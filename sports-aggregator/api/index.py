@@ -22,82 +22,144 @@ app.add_middleware(
 
 FEEDS = {
     "football": [
-        {"name": "BBC Sport Football", "url": "https://feeds.bbci.co.uk/sport/football/rss.xml"},
-        {"name": "ESPN Soccer", "url": "https://www.espn.com/espn/rss/soccer/news"},
-        {"name": "NOS Voetbal", "url": "https://feeds.nos.nl/nossportvoetbal"},
-        {"name": "Goal.com", "url": "https://www.goal.com/feeds/en/news"},
+        {"name": "BBC Sport",             "url": "https://feeds.bbci.co.uk/sport/football/rss.xml"},
+        {"name": "NOS Sport",             "url": "https://feeds.nos.nl/nossportvoetbal"},
+        {"name": "NU.nl",                 "url": "https://www.nu.nl/rss/Voetbal"},
+        {"name": "AD Sport",              "url": "https://www.ad.nl/voetbal/rss.xml"},
+        {"name": "Voetbal International", "url": "https://www.vi.nl/rss"},
+        {"name": "The Athletic",          "url": "https://news.google.com/rss/search?q=site:nytimes.com/athletic+football&hl=en-US&gl=US&ceid=US:en"},
+        {"name": "Flashscore",            "url": "https://news.google.com/rss/search?q=site:flashscore.com+football&hl=en-US&gl=US&ceid=US:en"},
     ],
     "f1": [
-        {"name": "BBC Sport F1", "url": "https://feeds.bbci.co.uk/sport/formula1/rss.xml"},
-        {"name": "The Race", "url": "https://the-race.com/category/formula-1/feed/"},
-        {"name": "RaceFans", "url": "https://www.racefans.net/feed/"},
-        {"name": "Autosport", "url": "https://www.autosport.com/rss/f1/news/"},
+        {"name": "BBC Sport F1",   "url": "https://feeds.bbci.co.uk/sport/formula1/rss.xml"},
+        {"name": "Autosport",      "url": "https://www.autosport.com/rss/f1/news/"},
         {"name": "Motorsport.com", "url": "https://www.motorsport.com/rss/f1/news/"},
+        {"name": "AD Sport",       "url": "https://www.ad.nl/formule-1/rss.xml"},
+        {"name": "NU.nl",          "url": "https://www.nu.nl/rss/Formule+1"},
+        {"name": "Formula 1",      "url": "https://www.formula1.com/content/fom-website/en/latest/all.xml"},
+        {"name": "The Athletic",   "url": "https://news.google.com/rss/search?q=site:nytimes.com/athletic+formula+1&hl=en-US&gl=US&ceid=US:en"},
     ],
     "nfl": [
-        {"name": "ESPN NFL", "url": "https://www.espn.com/espn/rss/nfl/news"},
+        {"name": "ESPN NFL",          "url": "https://www.espn.com/espn/rss/nfl/news"},
         {"name": "Pro Football Talk", "url": "https://profootballtalk.nbcsports.com/feed/"},
-        {"name": "NFL.com", "url": "https://www.nfl.com/rss/rsslanding?contentType=news"},
+        {"name": "NFL.com",           "url": "https://www.nfl.com/rss/rsslanding?contentType=news"},
+        {"name": "The Athletic",      "url": "https://news.google.com/rss/search?q=site:nytimes.com/athletic+nfl&hl=en-US&gl=US&ceid=US:en"},
     ],
     "nba": [
-        {"name": "ESPN NBA", "url": "https://www.espn.com/espn/rss/nba/news"},
-        {"name": "Hoops Rumors", "url": "https://www.hoopsrumors.com/feed"},
-        {"name": "Basketball Reference", "url": "https://www.basketball-reference.com/friv/rss.fcgi"},
+        {"name": "ESPN NBA",           "url": "https://www.espn.com/espn/rss/nba/news"},
+        {"name": "Basketball Reference","url": "https://www.basketball-reference.com/friv/rss.fcgi"},
+        {"name": "NBA.com",            "url": "https://www.nba.com/news/rss"},
+        {"name": "The Athletic",       "url": "https://news.google.com/rss/search?q=site:nytimes.com/athletic+nba&hl=en-US&gl=US&ceid=US:en"},
     ],
     "tennis": [
-        {"name": "BBC Sport Tennis", "url": "https://feeds.bbci.co.uk/sport/tennis/rss.xml"},
-        {"name": "Tennis World USA", "url": "https://www.tennisworldusa.org/rss/news.xml"},
-        {"name": "Tennis.com", "url": "https://www.tennis.com/feed/"},
+        {"name": "BBC Sport",    "url": "https://feeds.bbci.co.uk/sport/tennis/rss.xml"},
+        {"name": "Tennis World", "url": "https://www.tennisworldusa.org/rss/news.xml"},
+        {"name": "Tennis.com",   "url": "https://www.tennis.com/feed/"},
+        {"name": "ATP Tour",     "url": "https://www.atptour.com/en/news/rss"},
+        {"name": "WTA Tennis",   "url": "https://www.wtatennis.com/news/feed"},
+        {"name": "NOS Sport",    "url": "https://feeds.nos.nl/nossporttennis"},
+        {"name": "NU.nl",        "url": "https://www.nu.nl/rss/Tennis"},
+        {"name": "The Athletic", "url": "https://news.google.com/rss/search?q=site:nytimes.com/athletic+tennis&hl=en-US&gl=US&ceid=US:en"},
+        {"name": "Flashscore",   "url": "https://news.google.com/rss/search?q=site:flashscore.com+tennis&hl=en-US&gl=US&ceid=US:en"},
     ],
     "cycling": [
-        {"name": "CyclingNews", "url": "https://www.cyclingnews.com/news/feed/"},
-        {"name": "VeloNews", "url": "https://velonews.com/feed/"},
-        {"name": "Wielerflits", "url": "https://www.wielerflits.nl/feed/"},
-        {"name": "Cycling Weekly", "url": "https://www.cyclingweekly.com/feed"},
+        {"name": "CyclingNews",   "url": "https://www.cyclingnews.com/news/feed/"},
+        {"name": "VeloNews",      "url": "https://velonews.com/feed/"},
+        {"name": "Wielerflits",   "url": "https://www.wielerflits.nl/feed/"},
+        {"name": "Cycling Weekly","url": "https://www.cyclingweekly.com/feed"},
+        {"name": "NOS Sport",     "url": "https://feeds.nos.nl/nossportwielrennen"},
+        {"name": "NU.nl",         "url": "https://www.nu.nl/rss/Wielrennen"},
     ],
     "skating": [
-        {"name": "NOS Sport", "url": "https://feeds.nos.nl/nossport"},
-        {"name": "SpeedSkatingNews", "url": "https://speedskatingnews.info/feed/"},
-        {"name": "ISU", "url": "https://www.isu.org/rss-news"},
+        {"name": "NOS Sport",       "url": "https://feeds.nos.nl/nossportschaatsen"},
+        {"name": "SpeedSkatingNews","url": "https://speedskatingnews.info/feed/"},
+        {"name": "ISU",             "url": "https://www.isu.org/rss-news"},
+        {"name": "NU.nl",           "url": "https://www.nu.nl/rss/Schaatsen"},
+        {"name": "Schaatsen.nl",    "url": "https://www.schaatsen.nl/nieuws/feed/"},
     ],
     "mlb": [
-        {"name": "ESPN MLB", "url": "https://www.espn.com/espn/rss/mlb/news"},
-        {"name": "MLB Trade Rumors", "url": "https://www.mlbtraderumors.com/feed"},
-        {"name": "Baseball America", "url": "https://www.baseballamerica.com/feed/"},
+        {"name": "ESPN MLB",       "url": "https://www.espn.com/espn/rss/mlb/news"},
+        {"name": "MLB Trade Rumors","url": "https://www.mlbtraderumors.com/feed"},
+        {"name": "Baseball America","url": "https://www.baseballamerica.com/feed/"},
+        {"name": "MLB.com",        "url": "https://www.mlb.com/feeds/news/rss.xml"},
+        {"name": "The Athletic",   "url": "https://news.google.com/rss/search?q=site:nytimes.com/athletic+mlb&hl=en-US&gl=US&ceid=US:en"},
     ],
     "darts": [
-        {"name": "Darts1", "url": "https://www.darts1.de/en/rss.xml"},
-        {"name": "Dartsnews", "url": "https://dartsnews.com/feed/"},
-        {"name": "PDC", "url": "https://www.pdc.tv/news/rss"},
+        {"name": "Darts1",   "url": "https://www.darts1.de/en/rss.xml"},
+        {"name": "Dartsnews","url": "https://dartsnews.com/feed/"},
+        {"name": "PDC",      "url": "https://www.pdc.tv/news/rss"},
+        {"name": "NOS Sport","url": "https://feeds.nos.nl/nossportdarts"},
+        {"name": "NU.nl",    "url": "https://www.nu.nl/rss/Darts"},
+        {"name": "Flashscore","url": "https://news.google.com/rss/search?q=site:flashscore.com+darts&hl=en-US&gl=US&ceid=US:en"},
     ],
     "mma": [
-        {"name": "MMA Junkie", "url": "https://mmajunkie.usatoday.com/feed"},
-        {"name": "MMA Fighting", "url": "https://www.mmafighting.com/rss/current"},
-        {"name": "Bloody Elbow", "url": "https://www.bloodyelbow.com/rss/current"},
+        {"name": "MMA Junkie",    "url": "https://mmajunkie.usatoday.com/feed"},
+        {"name": "MMA Junkie EU", "url": "https://mmajunkie-eu.usatoday.com/feed"},
+        {"name": "MMA Fighting",  "url": "https://www.mmafighting.com/rss/current"},
+        {"name": "Bloody Elbow",  "url": "https://www.bloodyelbow.com/rss/current"},
     ],
     "nhl": [
-        {"name": "ESPN NHL", "url": "https://www.espn.com/espn/rss/nhl/news"},
-        {"name": "The Hockey News", "url": "https://thehockeynews.com/feed/"},
-        {"name": "NHL.com", "url": "https://www.nhl.com/rss/news.xml"},
+        {"name": "ESPN NHL",      "url": "https://www.espn.com/espn/rss/nhl/news"},
+        {"name": "The Hockey News","url": "https://thehockeynews.com/feed/"},
+        {"name": "NHL.com",       "url": "https://www.nhl.com/rss/news.xml"},
+        {"name": "The Athletic",  "url": "https://news.google.com/rss/search?q=site:nytimes.com/athletic+nhl&hl=en-US&gl=US&ceid=US:en"},
     ],
     "dutch": [
         {"name": "NOS Sport", "url": "https://feeds.nos.nl/nossport"},
-        {"name": "Nu.nl Sport", "url": "https://www.nu.nl/rss/Sport"},
-        {"name": "AD Sport", "url": "https://www.ad.nl/sport/rss.xml"},
+        {"name": "NU.nl",     "url": "https://www.nu.nl/rss/Sport"},
+        {"name": "Volkskrant","url": "https://www.volkskrant.nl/sport/rss.xml"},
     ],
     "olympics": [
-        {"name": "BBC Sport Olympics", "url": "https://feeds.bbci.co.uk/sport/olympics/rss.xml"},
-        {"name": "Around the Rings", "url": "https://aroundtherings.com/feed/"},
-        {"name": "Inside the Games", "url": "https://www.insidethegames.biz/rss"},
+        {"name": "BBC Sport",       "url": "https://feeds.bbci.co.uk/sport/olympics/rss.xml"},
+        {"name": "Around the Rings","url": "https://aroundtherings.com/feed/"},
+        {"name": "Inside the Games","url": "https://www.insidethegames.biz/rss"},
+        {"name": "NOS Sport",       "url": "https://feeds.nos.nl/nossportatletiek"},
+    ],
+    "hockey": [
+        {"name": "NOS Sport", "url": "https://feeds.nos.nl/nossporthockey"},
+        {"name": "Hockey.nl", "url": "https://www.hockey.nl/nieuws/rss"},
     ],
 }
 
 CACHE: dict = {}
-CACHE_TTL = 900  # 15 minutes
+CACHE_TTL = 900
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; SportsAggregator/1.0; +https://github.com/sports-aggregator)"
 }
+
+# Stop words for both English and Dutch — used for cross-language topic deduplication
+_STOP = {
+    "the","a","an","in","on","at","to","for","of","and","or","is","was","are",
+    "were","has","have","had","be","been","will","would","could","should","may",
+    "might","it","this","that","with","from","by","as","into","about","after",
+    "before","over","under","than","but","so","not","no","up","out","do","did",
+    "does","its","their","his","her","our","your","my","we","he","she","they",
+    # Dutch
+    "de","het","een","van","en","of","is","was","zijn","hebben","had","met",
+    "uit","bij","na","als","maar","dat","dit","die","hij","ze","we","om","naar",
+    "over","dan","nog","al","wel","niet","zo","ook","nu","er","zich","wat","wie",
+    "hoe","waar","door","tijdens","voor","hun","onze","uw","mijn","ik","jij","u",
+}
+
+
+def _tokens(title: str) -> set:
+    return {w for w in re.findall(r'\b\w+\b', title.lower()) if w not in _STOP and len(w) > 2}
+
+
+def _duplicate(t1: str, t2: str, threshold: float = 0.55) -> bool:
+    tok1, tok2 = _tokens(t1), _tokens(t2)
+    if not tok1 or not tok2:
+        return False
+    return len(tok1 & tok2) / max(len(tok1), len(tok2)) >= threshold
+
+
+def deduplicate(articles: list) -> list:
+    kept = []
+    for article in articles:
+        if not any(_duplicate(article["title"], k["title"]) for k in kept):
+            kept.append(article)
+    return kept
 
 
 def strip_html(text: str) -> str:
@@ -147,6 +209,7 @@ async def get_news(sport_filter: Optional[str]) -> list:
 
     articles = [a for r in results if isinstance(r, list) for a in r]
     articles.sort(key=lambda x: x["published"], reverse=True)
+    articles = deduplicate(articles)
 
     CACHE[key] = {"ts": now, "data": articles}
     return articles
@@ -179,5 +242,3 @@ async def news(sport: Optional[str] = Query(None)):
     })
     resp.headers["Cache-Control"] = "public, s-maxage=900, stale-while-revalidate=1800"
     return resp
-
-

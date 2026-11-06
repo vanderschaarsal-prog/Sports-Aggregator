@@ -13,6 +13,7 @@ const SPORTS = {
   nhl:      { label: "NHL",          emoji: "🏒", color: "#0ea5e9" },
   dutch:    { label: "Dutch Sports", emoji: "🇳🇱", color: "#ff6600" },
   olympics: { label: "Olympics",     emoji: "🏅", color: "#0077c8" },
+  hockey:   { label: "Field Hockey", emoji: "🏑", color: "#16a34a" },
 };
 
 const API_URL = "/api/news";
