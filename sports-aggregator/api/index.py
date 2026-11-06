@@ -183,6 +183,16 @@ def strip_html(text: str) -> str:
     return re.sub(r"<[^>]+>", "", text or "").strip()
 
 
+async def _resolve_google_url(client: httpx.AsyncClient, url: str) -> str:
+    """Follow the Google News redirect to get the original article URL."""
+    try:
+        async with client.stream("GET", url, timeout=4.0, follow_redirects=True) as r:
+            final = str(r.url)
+            return final if "google.com" not in final else url
+    except Exception:
+        return url
+
+
 async def fetch_feed(client: httpx.AsyncClient, source: dict, sport: str) -> list:
     try:
         r = await client.get(source["url"], timeout=8.0, follow_redirects=True)
@@ -198,6 +208,15 @@ async def fetch_feed(client: httpx.AsyncClient, source: dict, sport: str) -> lis
                 "source": source["name"],
                 "sport": sport,
             })
+        # For Google News feeds, resolve each article URL to the original
+        if "news.google.com" in source["url"] and articles:
+            resolved = await asyncio.gather(
+                *[_resolve_google_url(client, a["link"]) for a in articles],
+                return_exceptions=True,
+            )
+            for a, url in zip(articles, resolved):
+                if isinstance(url, str):
+                    a["link"] = url
         return articles
     except Exception:
         return []
