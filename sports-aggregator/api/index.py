@@ -8,6 +8,7 @@ from typing import Optional
 import time
 import re
 import os
+import random
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -154,6 +155,22 @@ def _duplicate(t1: str, t2: str, threshold: float = 0.55) -> bool:
     return len(tok1 & tok2) / max(len(tok1), len(tok2)) >= threshold
 
 
+def diversify(articles: list) -> list:
+    """Round-robin interleave by source so no outlet dominates the feed."""
+    groups: dict = {}
+    for a in articles:
+        groups.setdefault(a["source"], []).append(a)
+    queues = list(groups.values())
+    random.shuffle(queues)
+    result = []
+    while queues:
+        for q in queues:
+            if q:
+                result.append(q.pop(0))
+        queues = [q for q in queues if q]
+    return result
+
+
 def deduplicate(articles: list) -> list:
     kept = []
     for article in articles:
@@ -210,6 +227,7 @@ async def get_news(sport_filter: Optional[str]) -> list:
     articles = [a for r in results if isinstance(r, list) for a in r]
     articles.sort(key=lambda x: x["published"], reverse=True)
     articles = deduplicate(articles)
+    articles = diversify(articles)
 
     CACHE[key] = {"ts": now, "data": articles}
     return articles
