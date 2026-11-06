@@ -6,7 +6,7 @@
       "use": "@vercel/python",
       "config": {
         "maxDuration": 30,
-        "includeFiles": ["index.html", "style.css", "app.js"]
+        "includeFiles": ["index.html", "style.css", "app.js", "manifest.json", "icon.svg"]
       }
     }
   ],

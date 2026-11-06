@@ -248,6 +248,16 @@ async def js():
     with open(os.path.join(BASE, "app.js")) as f:
         return Response(content=f.read(), media_type="application/javascript")
 
+@app.get("/manifest.json")
+async def manifest():
+    with open(os.path.join(BASE, "manifest.json")) as f:
+        return Response(content=f.read(), media_type="application/manifest+json")
+
+@app.get("/icon.svg")
+async def icon():
+    with open(os.path.join(BASE, "icon.svg")) as f:
+        return Response(content=f.read(), media_type="image/svg+xml")
+
 @app.get("/api/news")
 @app.get("/api/index")
 async def news(sport: Optional[str] = Query(None)):
