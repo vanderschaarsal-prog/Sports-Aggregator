@@ -9,6 +9,7 @@ import time
 import re
 import os
 import random
+import base64
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -183,14 +184,27 @@ def strip_html(text: str) -> str:
     return re.sub(r"<[^>]+>", "", text or "").strip()
 
 
-async def _resolve_google_url(client: httpx.AsyncClient, url: str) -> str:
-    """Follow the Google News redirect to get the original article URL."""
-    try:
-        async with client.stream("GET", url, timeout=4.0, follow_redirects=True) as r:
-            final = str(r.url)
-            return final if "google.com" not in final else url
-    except Exception:
+def _decode_google_news_url(url: str) -> str:
+    """Extract the original article URL from a Google News RSS link.
+
+    Google News encodes the destination URL as a base64 protobuf inside the
+    path, so we can recover it without any network request.
+    """
+    if "news.google.com" not in url:
         return url
+    try:
+        match = re.search(r'/articles/([A-Za-z0-9_-]+)', url)
+        if not match:
+            return url
+        part = match.group(1)
+        part += '=' * ((4 - len(part) % 4) % 4)
+        decoded = base64.urlsafe_b64decode(part)
+        found = re.findall(rb'https?://[^\x00-\x20\x7f-\x9f]+', decoded)
+        if found:
+            return max(found, key=len).decode('utf-8', errors='ignore').rstrip('.,;:\'"()')
+    except Exception:
+        pass
+    return url
 
 
 async def fetch_feed(client: httpx.AsyncClient, source: dict, sport: str) -> list:
@@ -200,23 +214,17 @@ async def fetch_feed(client: httpx.AsyncClient, source: dict, sport: str) -> lis
         articles = []
         for entry in feed.entries[:8]:
             pub = entry.get("published_parsed") or entry.get("updated_parsed")
+            link = entry.get("link", "")
+            if "news.google.com" in source["url"]:
+                link = _decode_google_news_url(link)
             articles.append({
                 "title": strip_html(entry.get("title", "")).strip(),
-                "link": entry.get("link", ""),
+                "link": link,
                 "summary": strip_html(entry.get("summary", ""))[:220].strip(),
                 "published": time.mktime(pub) if pub else 0,
                 "source": source["name"],
                 "sport": sport,
             })
-        # For Google News feeds, resolve each article URL to the original
-        if "news.google.com" in source["url"] and articles:
-            resolved = await asyncio.gather(
-                *[_resolve_google_url(client, a["link"]) for a in articles],
-                return_exceptions=True,
-            )
-            for a, url in zip(articles, resolved):
-                if isinstance(url, str):
-                    a["link"] = url
         return articles
     except Exception:
         return []
